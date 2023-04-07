@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route, BrowserRouter, Routes, redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -13,7 +13,7 @@ function App() {
           <Route path="/" exact element={<Home />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
-          <Route path="/bookingcar" exact element={<BookingCar />} />
+          <Route path="/booking/:carID" exact element={<BookingCar />} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -21,3 +21,11 @@ function App() {
 }
 
 export default App;
+
+export function ProtectedRoute(props) {
+  if (localStorage.getItem("user")) {
+    <Route {...props} />;
+  } else {
+    return redirect("/login");
+  }
+}

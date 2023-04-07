@@ -3,6 +3,7 @@ import DefaultLayout from "../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCars } from "../redux/actions/carsActions";
 import { Button, Row, Col } from "antd";
+import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
 function Home() {
   const { cars } = useSelector((state) => state.carsReducer);
@@ -15,7 +16,7 @@ function Home() {
 
   return (
     <DefaultLayout>
-      {loading == true && <Spinner />}
+      {loading === true && <Spinner />}
       <Row justify="center" gutter={16} className="mt-5">
         {cars.map((car) => {
           return (
@@ -23,12 +24,14 @@ function Home() {
               <div className="car p-2 bs1 mt-3">
                 <img src={car.image} className="carimg" />
                 <div className="car-content d-flex align-items-center justify-content-between">
-                  <div>
+                  <div className="text-left pl-2">
                     <p>{car.name}</p>
-                    <p>{car.rentPerHour} Rent Per Hour</p>
+                    <p>{car.rentPerHour}$ Rent Per Hour</p>
                   </div>
                   <div>
-                    <button className="btn1 mr-2">Book Now</button>
+                    <button className="btn1 mr-2">
+                      <Link to={`/booking/${car._id}`}>Book Now</Link>
+                    </button>
                   </div>
                 </div>
               </div>

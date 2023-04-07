@@ -30,7 +30,6 @@ h1 {
 
 p {
   margin: 5px !important;
-  text-align: left;
   padding: 0;
 }
 .header{
@@ -111,6 +110,13 @@ p {
   opacity: 0.5;
  }
 
- button {
+button {
   padding: 10px;
- }
+ } 
+ 
+.carimg2 {
+  height: 400px;
+  border-radius: 10px;
+  width: auto;
+
+}
